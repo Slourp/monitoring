@@ -433,6 +433,8 @@ const Dashboard = () => {
                 );
               })}
 
+              {/* Card (Global Ping History) */}
+              {/* !TODO à  Replace Transactions card here*/}
               {/* Card (Recent Activity) */}
               <DashboardCard10 />
             </div>
