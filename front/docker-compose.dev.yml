@@ -1,0 +1,40 @@
+
+services:
+  app_vue:
+    container_name: ${PROJECT_NAME}_FRONT
+    hostname: ${PROJECT_NAME}_FRONT
+    build:
+      context: .
+      target: ${NODE_ENV}
+      args:
+        - NODE_ENV=${NODE_ENV}
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - SERVER_PORT=${SERVER_PORT}
+    ports:
+      # - "3000:${SERVER_PORT}"
+    #   - "9229:9229"
+      - "5173:1111"
+    volumes:
+      - .:/node/app:delegated
+      - /node/app/node_modules
+    env_file:
+      - .env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.${PROJECT_NAME}_ecommerce.loadbalancer.server.port=${SERVER_PORT}"
+      - "traefik.http.routers.${PROJECT_NAME}_ecommerce.rule=Host(`${DOMAINE}.traefik.me`)"
+      - "traefik.http.routers.${PROJECT_NAME}_ecommerce-tls.tls.domains[0].main=${DOMAINE}.traefik.me"
+      - "traefik.http.routers.${PROJECT_NAME}_ecommerce-tls.tls.domains[0].sans=${DOMAINE}-*.traefik.me"
+      - "traefik.http.routers.${PROJECT_NAME}_ecommerce.tls=true"
+  
+    networks:
+      - default
+      - project-network
+  
+networks:
+  default:
+    name: dev
+  project-network:
+    name: ${PROJECT_NAME}-NETOWRKs
+    internal: true
