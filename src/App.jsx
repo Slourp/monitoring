@@ -76,7 +76,7 @@ import TooltipPage from './pages/component/TooltipPage';
 import AccordionPage from './pages/component/AccordionPage';
 import IconsPage from './pages/component/IconsPage';
 
-function App() {
+const App=() =>{
 
   const location = useLocation();
 
