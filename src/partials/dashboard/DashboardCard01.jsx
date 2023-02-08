@@ -7,7 +7,7 @@ import EditMenu from "../../components/DropdownEditMenu";
 // Import utilities
 import { tailwindConfig, hexToRGB } from "../../utils/Utils";
 
-function DashboardCard01() {
+const DashboardCard01 = () => {
   const chartData = {
     labels: [
       "12-01-2020",
@@ -127,6 +127,6 @@ function DashboardCard01() {
       </div>
     </div>
   );
-}
+};
 
 export default DashboardCard01;
